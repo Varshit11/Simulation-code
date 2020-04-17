@@ -1,7 +1,7 @@
 
 # Central limit theorem statement - If X_hat is the mean of a random sample of size N taken
-# from a population with mean ?? and finite variance ??^2, then the limiting form of
-# the distribution of Z = (X_hat - ??)/(??/sqrt(N)) as N??????, 
+# from a population with mean mu and finite standard deviation sigma, then the limiting form of
+# the distribution of Z = (X_hat - mu)/(singma/sqrt(N)) as N approaches infinity,
 # is the standard normal distribution with mean 0 and standard deviation 1.
 
 # Since distribution doesn't matter for central limit theorem we will demonstrate central limit 
@@ -68,7 +68,7 @@ abline(v = mean(samp_size500), col = "black")
 # 1. All the plots are normal distributions. 
 # 2. looking at the 6 plots we see that as we increase the sample size, the standard deviation decreases,
 # as our plot shrinks. 
-# 3. The shrinking of the plot, justifies the ??/sqrt(N) standard deviation as mentioned in Central
+# 3. The shrinking of the plot, justifies the sigma/sqrt(N) standard deviation as mentioned in Central
 # limit theorem, as N increases standard deviation decreases. 
 # 4. All the plots have mean which is close to the true mean of the 10,000 samples.
 
