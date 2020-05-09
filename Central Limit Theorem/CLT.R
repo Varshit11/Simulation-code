@@ -1,7 +1,7 @@
 
 # Central limit theorem statement - If X_hat is the mean of a random sample of size N taken
-# from a population with mean mu and finite standard deviation sigma, then the limiting form of
-# the distribution of Z = (X_hat - mu)/(singma/sqrt(N)) as N approaches infinity,
+# from a population with mean ?? and finite variance ??^2, then the limiting form of
+# the distribution of Z = (X_hat - ??)/(??/sqrt(N)) as N??????, 
 # is the standard normal distribution with mean 0 and standard deviation 1.
 
 # Since distribution doesn't matter for central limit theorem we will demonstrate central limit 
@@ -11,8 +11,16 @@ d <- runif(10000, min = -10, max = 10)
 hist(d, col="lightblue", main="Histrogram of the uniform distribution")
 abline(v=mean(d), col="black")
 mean(d)
+
+
 # so the plot will resemble uniform distribution and the black line in the plot shows the mean
 # which is close to 0. This is the true mean of the population. 
+
+# Instead of taking data from distribution we can also work on real world data
+d2 <- iris$Sepal.Length # iris is built in data set in R
+hist(d2, col="lightblue", main="")
+abline(v=mean(d2), col="black")
+mean(d2)
 
 # Assumptions - 
 # 1. Our data consists of 10,000 values randomly sampled from uniform distribution. a = -10, b = 10.
@@ -36,39 +44,41 @@ samp_size500 <- c()
 # mean of these 5 elements, storing in a vector and doing this process 5,000 times.
 
 # we are doing similar operations, now we are taking 15, 30, 50, 100, 500 samples.
+# the plots are made from d2 data., if you want from d data just change the above for loop d2 to d
 for(i in 1:simulations){
-  samp_size5[i] <- mean(sample(d, 10, replace = TRUE))
-  samp_size15[i] <- mean(sample(d, 15, replace = TRUE))
-  samp_size30[i] <- mean(sample(d, 30, replace = TRUE))
-  samp_size50[i] <- mean(sample(d, 50, replace = TRUE))
-  samp_size100[i] <- mean(sample(d, 100, replace = TRUE))
-  samp_size500[i] <- mean(sample(d, 500, replace = TRUE))
+  samp_size5[i] <- mean(sample(d2, 5, replace = TRUE))
+  samp_size15[i] <- mean(sample(d2, 15, replace = TRUE))
+  samp_size30[i] <- mean(sample(d2, 30, replace = TRUE))
+  samp_size50[i] <- mean(sample(d2, 50, replace = TRUE))
+  samp_size100[i] <- mean(sample(d2, 100, replace = TRUE))
+  samp_size500[i] <- mean(sample(d2, 500, replace = TRUE))
 }
 
+
 par(mfrow = c(1,1))
-hist(samp_size5, col ="lightblue",main="Sample size=5", xlim=c(-6, 6))
+hist(samp_size5, col ="lightblue",main="Sample size=5", xlim=c(4.5,7.5))
 abline(v = mean(samp_size5), col = "black")
 
-hist(samp_size15, col ="lightgreen", main="Sample size=15", xlim=c(-6, 6))
+hist(samp_size15, col ="lightgreen", main="Sample size=15", xlim=c(4.5,7.5))
 abline(v = mean(samp_size15), col = "black")
 
-hist(samp_size30, col ="red",main="Sample size=30", xlim=c(-6, 6))
+hist(samp_size30, col ="red",main="Sample size=30", xlim=c(4.5,7.5))
 abline(v = mean(samp_size30), col = "black")
 
-hist(samp_size50, col ="orange",main="Sample size=50", xlim=c(-6, 6))
+hist(samp_size50, col ="orange",main="Sample size=50", xlim=c(4.5,7.5))
 abline(v = mean(samp_size50), col = "black")
 
-hist(samp_size100, col ="pink", main="Sample size=100", xlim=c(-6, 6))
+hist(samp_size100, col ="pink", main="Sample size=100", xlim=c(4.5,7.5))
 abline(v = mean(samp_size100), col = "black")
 
-hist(samp_size500, col ="yellow",main="Sample size=500", xlim=c(-6, 6))
+hist(samp_size500, col ="yellow",main="Sample size=500", xlim=c(4.5,7.5))
 abline(v = mean(samp_size500), col = "black")
 
 
 # 1. All the plots are normal distributions. 
 # 2. looking at the 6 plots we see that as we increase the sample size, the standard deviation decreases,
 # as our plot shrinks. 
-# 3. The shrinking of the plot, justifies the sigma/sqrt(N) standard deviation as mentioned in Central
+# 3. The shrinking of the plot, justifies the ??/sqrt(N) standard deviation as mentioned in Central
 # limit theorem, as N increases standard deviation decreases. 
 # 4. All the plots have mean which is close to the true mean of the 10,000 samples.
 
